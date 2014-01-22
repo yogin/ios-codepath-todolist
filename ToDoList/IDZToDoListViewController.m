@@ -51,11 +51,7 @@
 
 - (void)setup
 {
-	self.todoItems = [[NSMutableArray alloc] init];
-	
-	for (int i = 0; i < 5; i++) {
-		[self.todoItems addObject:[NSString stringWithFormat:@"item %d", i]];
-	}
+	[self loadItems];
 }
 
 #pragma mark - Table view data source
@@ -96,8 +92,10 @@
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
+		[self removeItem:indexPath.row];
+		[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+		[self.tableView reloadData];
+    }
     else if (editingStyle == UITableViewCellEditingStyleInsert) {
         // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
     }   
@@ -107,10 +105,7 @@
 // Override to support rearranging the table view.
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
 {
-	NSString *todoItem = self.todoItems[fromIndexPath.row];
-
-	[self.todoItems removeObjectAtIndex:fromIndexPath.row];
-	[self.todoItems insertObject:todoItem atIndex:toIndexPath.row];
+	[self moveItemFrom:fromIndexPath.row to:toIndexPath.row];
 }
 
 
@@ -137,15 +132,65 @@
 
 - (IBAction)onAddItem:(id)sender
 {
-	[self.todoItems insertObject:@"new task to do" atIndex:0];
+	[self addItem:@"new task to do"];
 	[self.tableView reloadData];
+}
+
+- (void)addItem:(NSString *)task
+{
+	[self.todoItems insertObject:task atIndex:0];
+	[self saveItems];
+}
+
+- (void)updateItem:(NSInteger)index withText:(NSString *)task
+{
+	self.todoItems[index] = task;
+	[self saveItems];
+}
+
+- (void)moveItemFrom:(NSInteger)from to:(NSInteger)to
+{
+	NSString *todoItem = self.todoItems[from];
+
+	[self.todoItems removeObjectAtIndex:from];
+	[self.todoItems insertObject:todoItem atIndex:to];
+	[self saveItems];
+}
+
+- (void)removeItem:(NSInteger)at
+{
+	[self.todoItems removeObjectAtIndex:at];
+	[self saveItems];
+}
+
+- (void)loadItems
+{
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	NSArray *savedItems = [defaults arrayForKey:@"todoItems"];
+
+	if (savedItems) {
+		self.todoItems = [savedItems mutableCopy];
+	}
+	else {
+		self.todoItems = [[NSMutableArray alloc] init];
+	}
+
+	//	for (int i = 0; i < 5; i++) {
+	//		[self.todoItems addObject:[NSString stringWithFormat:@"item %d", i]];
+	//	}
+}
+
+- (void)saveItems
+{
+	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+	[defaults setObject:self.todoItems forKey:@"todoItems"];
 }
 
 #pragma mark - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-	self.todoItems[textField.tag] = textField.text;
+	[self updateItem:textField.tag withText:textField.text];
 	[textField resignFirstResponder];
 
 	return YES;
