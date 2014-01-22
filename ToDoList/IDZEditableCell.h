@@ -12,4 +12,6 @@
 
 @property (weak, nonatomic) IBOutlet UITextField *todoText;
 
+- (void)updateText:(NSString *)text withTag:(NSInteger)tag;
+
 @end

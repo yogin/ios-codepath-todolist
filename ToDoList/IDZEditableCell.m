@@ -8,6 +8,13 @@
 
 #import "IDZEditableCell.h"
 
+@interface IDZEditableCell ()
+
+//@property CGSize originalSize;
+//@property CGSize originalTextfieldSize;
+
+@end
+
 @implementation IDZEditableCell
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -24,6 +31,26 @@
     [super setSelected:selected animated:animated];
 
     // Configure the view for the selected state
+}
+
+- (void)updateText:(NSString *)text withTag:(NSInteger)tag
+{
+	self.todoText.text = text;
+	self.todoText.tag = tag;
+
+
+	
+//	[self.todoText sizeToFit];
+}
+
+- (void)awakeFromNib
+{
+//	[super awakeFromNib];
+//	NSLog(@"awakeFromNib");
+//	
+//	self.originalSize = self.bounds.size;
+//	self.originalTextfieldSize = self.todoText.bounds.size;
+//	NSLog(@"%@", self.todoText);
 }
 
 @end

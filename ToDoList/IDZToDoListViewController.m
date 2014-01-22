@@ -74,16 +74,22 @@
     IDZEditableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
 	cell.todoText.delegate = self;
-	cell.todoText.text = self.todoItems[indexPath.row];
-	cell.todoText.tag = indexPath.row;
+	[cell updateText:self.todoItems[indexPath.row] withTag:indexPath.row];
 
+	
+	//	CGFloat textFieldWidth = self.todoText.frame.size.width;
+	//	CGSize newTextFieldSize = [self.todoText sizeThatFits:CGSizeMake(textFieldWidth, MAXFLOAT)];
+	//	NSLog(@"width: %@", newTextFieldSize);
+	//	CGRect newTextFieldFrame = self.todoText.frame;
+	//	newTextFieldFrame.size = CGSizeMake(fmaxf(newTextFieldSize.width, textFieldWidth), newTextFieldSize.height);
+	//	self.todoText.frame = newTextFieldFrame;
+	
     return cell;
 }
 
 // Override to support conditional editing of the table view.
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
     return YES;
 }
 
@@ -96,9 +102,9 @@
 		[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 		[self.tableView reloadData];
     }
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+//    else if (editingStyle == UITableViewCellEditingStyleInsert) {
+//        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
+//    }   
 }
 
 
@@ -112,8 +118,26 @@
 // Override to support conditional rearranging of the table view.
 - (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the item to be re-orderable.
     return YES;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	UITextView *tmpText = [[UITextView alloc] init];
+	tmpText.text = self.todoItems[indexPath.row];
+	
+	CGFloat width = self.tableView.frame.size.width;
+	CGSize size = [tmpText sizeThatFits:CGSizeMake(width, MAXFLOAT)];
+
+	return size.height;
+	
+//    UITextView *tempTV = [[UITextView alloc] init];
+//	[tempTV setText:@"your text"];
+//	CGFloat width = self.tableView.frame.size.width - TEXT_ORIGIN_X - TEXT_END_X;
+//	CGSize size = [tempTV sizeThatFits:CGSizeMake(width, MAX_HEIGHT)];
+//	return (TEXT_ORIGIN_Y + size.height + TEXT_BOTTOM_SPACE);
+	
 }
 
 /*
@@ -174,10 +198,6 @@
 	else {
 		self.todoItems = [[NSMutableArray alloc] init];
 	}
-
-	//	for (int i = 0; i < 5; i++) {
-	//		[self.todoItems addObject:[NSString stringWithFormat:@"item %d", i]];
-	//	}
 }
 
 - (void)saveItems
