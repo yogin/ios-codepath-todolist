@@ -77,7 +77,9 @@
     static NSString *CellIdentifier = @"EditableCell";
     IDZEditableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
+	cell.todoText.delegate = self;
 	cell.todoText.text = self.todoItems[indexPath.row];
+	cell.todoText.tag = indexPath.row;
 
     return cell;
 }
@@ -137,6 +139,16 @@
 {
 	[self.todoItems insertObject:@"new task to do" atIndex:0];
 	[self.tableView reloadData];
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+	self.todoItems[textField.tag] = textField.text;
+	[textField resignFirstResponder];
+
+	return YES;
 }
 
 @end
