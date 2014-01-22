@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface IDZEditCell : UITableViewCell
+@interface IDZEditableCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UITextField *todoText;
 
