@@ -15,6 +15,9 @@
 
 - (IBAction)onDoneButton:(id)sender;
 
+@property (strong, nonatomic) NSString *text;
+@property NSInteger index;
+
 @end
 
 @implementation IDZEditItemViewController
@@ -47,6 +50,8 @@
 - (void)setup
 {
 	self.itemText.delegate = self;
+//	self.itemText.text = @"bla bla bla";
+	self.itemText.text = self.text;
 	
     [[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(keyboardWasShown:)
@@ -75,6 +80,14 @@
 
 - (IBAction)onDoneButton:(id)sender
 {
+	[self.delegate updateToDoItemText:self.itemText.text atIndex:self.index];
+	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)setText:(NSString *)text withIndex:(NSInteger)index
+{
+	self.text = text;
+	self.index = index;
 }
 
 @end

@@ -9,11 +9,10 @@
 #import "IDZToDoListViewController.h"
 #import "IDZToDoItem.h"
 #import "IDZDisplayCell.h"
-#import "IDZEditItemViewController.h"
+
 
 @interface IDZToDoListViewController ()
 
-//@property (strong, nonatomic) IDZEditableCell *cell;
 @property (strong, nonatomic) NSMutableArray *todoItems;
 
 - (IBAction)onAddItem:(id)sender;
@@ -41,12 +40,6 @@
     // self.clearsSelectionOnViewWillAppear = NO;
  
 	self.navigationItem.leftBarButtonItem = self.editButtonItem;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 - (void)setup
@@ -127,7 +120,7 @@
 //	return size.height;
 //}
 
-/*
+
 #pragma mark - Navigation
 
 // In a story board-based application, you will often want to do a little preparation before navigation
@@ -135,9 +128,16 @@
 {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+	
+	if ([[segue identifier] isEqual:@"editItemSegue"]) {
+		IDZEditItemViewController *editVC = [segue destinationViewController];
+		editVC.delegate = self;
+		UITableViewCell *cell = (UITableViewCell *) sender;
+		IDZToDoItem *item = self.todoItems[cell.tag];
+		[editVC setText:item.text withIndex:cell.tag];
+	}
 }
 
-*/
 
 #pragma mark - Actions
 
@@ -153,6 +153,7 @@
 {
 	IDZToDoItem *item = self.todoItems[index];
 	[item updateText:text];
+	self.todoItems[index] = item;
 }
 
 - (void)moveItemFrom:(NSInteger)from to:(NSInteger)to
@@ -191,14 +192,13 @@
 //	[defaults setObject:self.todoItems forKey:@"todoItems"];
 }
 
-//#pragma mark - UITextViewDelegate
-//
-//- (BOOL)textFieldShouldReturn:(UITextField *)textField
-//{
-//	[self updateItem:textField.tag withText:textField.text];
-//	[textField resignFirstResponder];
-//
-//	return YES;
-//}
+
+#pragma mark - IDZEditItemViewControllerDelegate
+
+- (void)updateToDoItemText:(NSString *)text atIndex:(NSInteger)index
+{
+	[self updateItem:index withText:text];
+	[self.tableView reloadData];
+}
 
 @end

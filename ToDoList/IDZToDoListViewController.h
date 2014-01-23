@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "IDZEditItemViewController.h"
 
-@interface IDZToDoListViewController : UITableViewController <UITextViewDelegate>
+@interface IDZToDoListViewController : UITableViewController <IDZEditItemViewControllerDelegate>
 
 @end

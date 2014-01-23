@@ -36,7 +36,7 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="todoLabel" destination="k9o-vO-fgP" id="dC9-YV-Rzb"/>
-                                    <segue destination="Hzs-0g-9oe" kind="modal" id="dol-EM-62f"/>
+                                    <segue destination="Hzs-0g-9oe" kind="modal" identifier="editItemSegue" id="dol-EM-62f"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
