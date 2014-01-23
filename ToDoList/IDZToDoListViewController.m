@@ -74,7 +74,6 @@
     return cell;
 }
 
-- (void)tableView
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	cell = (IDZDisplayCell*) cell;
