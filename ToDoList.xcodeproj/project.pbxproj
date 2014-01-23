@@ -21,7 +21,19 @@
 		15589C0B188E48AF0088028D /* ToDoListTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 15589C0A188E48AF0088028D /* ToDoListTests.m */; };
 		15589C16188E48FC0088028D /* ToDoList.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 15589C15188E48FC0088028D /* ToDoList.storyboard */; };
 		15589C19188E4ED90088028D /* IDZToDoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15589C18188E4ED90088028D /* IDZToDoListViewController.m */; };
-		15589C20188E53EA0088028D /* IDZEditableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15589C1F188E53EA0088028D /* IDZEditableCell.m */; };
+		15A2AAFB1890E8D30075B056 /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A2AAFA1890E8D30075B056 /* Parse.framework */; };
+		15A2AAFD1890E9100075B056 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A2AAFC1890E9100075B056 /* AudioToolbox.framework */; };
+		15A2AAFF1890E9190075B056 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A2AAFE1890E9190075B056 /* CFNetwork.framework */; };
+		15A2AB011890E9320075B056 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A2AB001890E9320075B056 /* CoreLocation.framework */; };
+		15A2AB031890E93D0075B056 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A2AB021890E93D0075B056 /* libz.dylib */; };
+		15A2AB051890E9450075B056 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A2AB041890E9450075B056 /* MobileCoreServices.framework */; };
+		15A2AB071890E94D0075B056 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A2AB061890E94D0075B056 /* QuartzCore.framework */; };
+		15A2AB091890E9550075B056 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A2AB081890E9550075B056 /* Security.framework */; };
+		15A2AB0B1890E95D0075B056 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A2AB0A1890E95D0075B056 /* StoreKit.framework */; };
+		15A2AB0D1890E9650075B056 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A2AB0C1890E9650075B056 /* SystemConfiguration.framework */; };
+		15A2AB111890E9F60075B056 /* IDZToDoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A2AB101890E9F60075B056 /* IDZToDoItem.m */; };
+		15A2AB141890F1C50075B056 /* IDZDisplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A2AB131890F1C50075B056 /* IDZDisplayCell.m */; };
+		15A2AB171890F3690075B056 /* IDZEditItemViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A2AB161890F3690075B056 /* IDZEditItemViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,8 +66,22 @@
 		15589C15188E48FC0088028D /* ToDoList.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ToDoList.storyboard; sourceTree = "<group>"; };
 		15589C17188E4ED90088028D /* IDZToDoListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDZToDoListViewController.h; sourceTree = "<group>"; };
 		15589C18188E4ED90088028D /* IDZToDoListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDZToDoListViewController.m; sourceTree = "<group>"; };
-		15589C1E188E53EA0088028D /* IDZEditableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDZEditableCell.h; sourceTree = "<group>"; };
-		15589C1F188E53EA0088028D /* IDZEditableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDZEditableCell.m; sourceTree = "<group>"; };
+		15A2AAFA1890E8D30075B056 /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Parse.framework; sourceTree = "<group>"; };
+		15A2AAFC1890E9100075B056 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		15A2AAFE1890E9190075B056 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		15A2AB001890E9320075B056 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		15A2AB021890E93D0075B056 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		15A2AB041890E9450075B056 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		15A2AB061890E94D0075B056 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		15A2AB081890E9550075B056 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		15A2AB0A1890E95D0075B056 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		15A2AB0C1890E9650075B056 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		15A2AB0F1890E9F60075B056 /* IDZToDoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDZToDoItem.h; sourceTree = "<group>"; };
+		15A2AB101890E9F60075B056 /* IDZToDoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDZToDoItem.m; sourceTree = "<group>"; };
+		15A2AB121890F1C50075B056 /* IDZDisplayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDZDisplayCell.h; sourceTree = "<group>"; };
+		15A2AB131890F1C50075B056 /* IDZDisplayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDZDisplayCell.m; sourceTree = "<group>"; };
+		15A2AB151890F3690075B056 /* IDZEditItemViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDZEditItemViewController.h; sourceTree = "<group>"; };
+		15A2AB161890F3690075B056 /* IDZEditItemViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDZEditItemViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,8 +89,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				15A2AB0D1890E9650075B056 /* SystemConfiguration.framework in Frameworks */,
+				15A2AB0B1890E95D0075B056 /* StoreKit.framework in Frameworks */,
+				15A2AB091890E9550075B056 /* Security.framework in Frameworks */,
+				15A2AB071890E94D0075B056 /* QuartzCore.framework in Frameworks */,
+				15A2AB051890E9450075B056 /* MobileCoreServices.framework in Frameworks */,
+				15A2AB031890E93D0075B056 /* libz.dylib in Frameworks */,
+				15A2AB011890E9320075B056 /* CoreLocation.framework in Frameworks */,
 				15589BE8188E48AE0088028D /* CoreGraphics.framework in Frameworks */,
+				15A2AAFF1890E9190075B056 /* CFNetwork.framework in Frameworks */,
+				15A2AAFD1890E9100075B056 /* AudioToolbox.framework in Frameworks */,
 				15589BEA188E48AE0088028D /* UIKit.framework in Frameworks */,
+				15A2AAFB1890E8D30075B056 /* Parse.framework in Frameworks */,
 				15589BE6188E48AE0088028D /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -104,6 +140,16 @@
 		15589BE4188E48AE0088028D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				15A2AB0C1890E9650075B056 /* SystemConfiguration.framework */,
+				15A2AB0A1890E95D0075B056 /* StoreKit.framework */,
+				15A2AB081890E9550075B056 /* Security.framework */,
+				15A2AB061890E94D0075B056 /* QuartzCore.framework */,
+				15A2AB041890E9450075B056 /* MobileCoreServices.framework */,
+				15A2AB021890E93D0075B056 /* libz.dylib */,
+				15A2AB001890E9320075B056 /* CoreLocation.framework */,
+				15A2AAFE1890E9190075B056 /* CFNetwork.framework */,
+				15A2AAFC1890E9100075B056 /* AudioToolbox.framework */,
+				15A2AAFA1890E8D30075B056 /* Parse.framework */,
 				15589BE5188E48AE0088028D /* Foundation.framework */,
 				15589BE7188E48AE0088028D /* CoreGraphics.framework */,
 				15589BE9188E48AE0088028D /* UIKit.framework */,
@@ -115,6 +161,7 @@
 		15589BEB188E48AE0088028D /* ToDoList */ = {
 			isa = PBXGroup;
 			children = (
+				15A2AB0E1890E9DC0075B056 /* Models */,
 				15589C1A188E53B30088028D /* Views */,
 				15589C14188E48E00088028D /* Controllers */,
 				15589BF4188E48AE0088028D /* IDZAppDelegate.h */,
@@ -160,6 +207,8 @@
 			children = (
 				15589C17188E4ED90088028D /* IDZToDoListViewController.h */,
 				15589C18188E4ED90088028D /* IDZToDoListViewController.m */,
+				15A2AB151890F3690075B056 /* IDZEditItemViewController.h */,
+				15A2AB161890F3690075B056 /* IDZEditItemViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -167,10 +216,19 @@
 		15589C1A188E53B30088028D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				15589C1E188E53EA0088028D /* IDZEditableCell.h */,
-				15589C1F188E53EA0088028D /* IDZEditableCell.m */,
+				15A2AB121890F1C50075B056 /* IDZDisplayCell.h */,
+				15A2AB131890F1C50075B056 /* IDZDisplayCell.m */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		15A2AB0E1890E9DC0075B056 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				15A2AB0F1890E9F60075B056 /* IDZToDoItem.h */,
+				15A2AB101890E9F60075B056 /* IDZToDoItem.m */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,9 +329,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				15589BF6188E48AE0088028D /* IDZAppDelegate.m in Sources */,
-				15589C20188E53EA0088028D /* IDZEditableCell.m in Sources */,
+				15A2AB141890F1C50075B056 /* IDZDisplayCell.m in Sources */,
 				15589C19188E4ED90088028D /* IDZToDoListViewController.m in Sources */,
 				15589BF2188E48AE0088028D /* main.m in Sources */,
+				15A2AB111890E9F60075B056 /* IDZToDoItem.m in Sources */,
+				15A2AB171890F3690075B056 /* IDZEditItemViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -392,6 +452,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/yogin/Projects/CodePath-iOS/ios-codepath-todolist",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ToDoList/ToDoList-Prefix.pch";
 				INFOPLIST_FILE = "ToDoList/ToDoList-Info.plist";
@@ -405,6 +469,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/yogin/Projects/CodePath-iOS/ios-codepath-todolist",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ToDoList/ToDoList-Prefix.pch";
 				INFOPLIST_FILE = "ToDoList/ToDoList-Info.plist";

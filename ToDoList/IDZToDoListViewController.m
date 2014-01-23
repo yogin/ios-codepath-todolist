@@ -7,12 +7,13 @@
 //
 
 #import "IDZToDoListViewController.h"
-#import "IDZEditableCell.h"
+#import "IDZToDoItem.h"
+#import "IDZDisplayCell.h"
+#import "IDZEditItemViewController.h"
 
 @interface IDZToDoListViewController ()
 
-@property (strong, nonatomic) IDZEditableCell *cell;
-
+//@property (strong, nonatomic) IDZEditableCell *cell;
 @property (strong, nonatomic) NSMutableArray *todoItems;
 
 - (IBAction)onAddItem:(id)sender;
@@ -39,10 +40,7 @@
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 	self.navigationItem.leftBarButtonItem = self.editButtonItem;
-
 }
 
 - (void)didReceiveMemoryWarning
@@ -72,28 +70,21 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"EditableCell";
-    IDZEditableCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-	cell.todoText.delegate = self;
-	[cell updateText:self.todoItems[indexPath.row] withTag:indexPath.row];
+    static NSString *CellIdentifier = @"DisplayCell";
+    IDZDisplayCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+	IDZToDoItem *item = self.todoItems[indexPath.row];
+	
+	cell.todoLabel.text = item.text;
+	cell.tag = indexPath.row;
 
-	
-	//	CGFloat textFieldWidth = self.todoText.frame.size.width;
-	//	CGSize newTextFieldSize = [self.todoText sizeThatFits:CGSizeMake(textFieldWidth, MAXFLOAT)];
-	//	NSLog(@"width: %@", newTextFieldSize);
-	//	CGRect newTextFieldFrame = self.todoText.frame;
-	//	newTextFieldFrame.size = CGSizeMake(fmaxf(newTextFieldSize.width, textFieldWidth), newTextFieldSize.height);
-	//	self.todoText.frame = newTextFieldFrame;
-	
     return cell;
 }
 
 // Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
-}
+//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return YES;
+//}
 
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -101,7 +92,7 @@
     if (editingStyle == UITableViewCellEditingStyleDelete) {
         // Delete the row from the data source
 		[self removeItem:indexPath.row];
-		[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+		[self.tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 		[self.tableView reloadData];
     }
 //    else if (editingStyle == UITableViewCellEditingStyleInsert) {
@@ -118,35 +109,23 @@
 
 
 // Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    return YES;
-}
+//- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    return YES;
+//}
 
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	UITextView *tmpText = [[UITextView alloc] init];
-//	UITextView *tmpText = [self.tableView cellForRowAtIndexPath:indexPath];
-	tmpText.text = self.todoItems[indexPath.row];
-	
-	CGFloat width = self.tableView.frame.size.width;
-
-
-//	CGSize size = [tmpText.text sizeWithAttributes:@{NSFontAttributeName: tmpText.font}];
-//	tmpText si
-	CGSize size = [tmpText sizeThatFits:CGSizeMake(300, MAXFLOAT)];
-
-//	return 200;
-	return size.height;
-	
-//    UITextView *tempTV = [[UITextView alloc] init];
-//	[tempTV setText:@"your text"];
-//	CGFloat width = self.tableView.frame.size.width - TEXT_ORIGIN_X - TEXT_END_X;
-//	CGSize size = [tempTV sizeThatFits:CGSizeMake(width, MAX_HEIGHT)];
-//	return (TEXT_ORIGIN_Y + size.height + TEXT_BOTTOM_SPACE);
-	
-}
+//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//	UITextView *tmpText = [[UITextView alloc] init];
+//	tmpText.text = self.todoItems[indexPath.row];
+//	
+//	CGFloat width = self.tableView.frame.size.width;
+//	
+//	CGSize size = [tmpText sizeThatFits:CGSizeMake(300, MAXFLOAT)];
+//
+//	return size.height;
+//}
 
 /*
 #pragma mark - Navigation
@@ -158,35 +137,31 @@
     // Pass the selected object to the new view controller.
 }
 
- */
+*/
 
 #pragma mark - Actions
 
 - (IBAction)onAddItem:(id)sender
 {
-	[self addItem:@"new task to do"];
+	IDZToDoItem *item = [IDZToDoItem itemWithText:@"new task to do"];
+	[self.todoItems insertObject:item atIndex:0];
 	[self.tableView reloadData];
 }
 
-- (void)addItem:(NSString *)task
-{
-	[self.todoItems insertObject:task atIndex:0];
-	[self saveItems];
-}
 
-- (void)updateItem:(NSInteger)index withText:(NSString *)task
+- (void)updateItem:(NSInteger)index withText:(NSString *)text
 {
-	self.todoItems[index] = task;
-	[self saveItems];
+	IDZToDoItem *item = self.todoItems[index];
+	[item updateText:text];
 }
 
 - (void)moveItemFrom:(NSInteger)from to:(NSInteger)to
 {
-	NSString *todoItem = self.todoItems[from];
+	IDZToDoItem *item = self.todoItems[from];
 
 	[self.todoItems removeObjectAtIndex:from];
-	[self.todoItems insertObject:todoItem atIndex:to];
-	[self saveItems];
+	[self.todoItems insertObject:item atIndex:to];
+//	[self saveItems];
 }
 
 - (void)removeItem:(NSInteger)at
@@ -197,31 +172,33 @@
 
 - (void)loadItems
 {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	NSArray *savedItems = [defaults arrayForKey:@"todoItems"];
-
-	if (savedItems) {
-		self.todoItems = [savedItems mutableCopy];
-	}
-	else {
-		self.todoItems = [[NSMutableArray alloc] init];
-	}
+//	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//	NSArray *savedItems = [defaults arrayForKey:@"todoItems"];
+//
+//	if (savedItems) {
+//		self.todoItems = [savedItems mutableCopy];
+//	}
+//	else {
+//		self.todoItems = [[NSMutableArray alloc] init];
+//	}
+//	
+	self.todoItems = [[NSMutableArray alloc] init];
 }
 
 - (void)saveItems
 {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	[defaults setObject:self.todoItems forKey:@"todoItems"];
+//	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+//	[defaults setObject:self.todoItems forKey:@"todoItems"];
 }
 
-#pragma mark - UITextFieldDelegate
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-	[self updateItem:textField.tag withText:textField.text];
-	[textField resignFirstResponder];
-
-	return YES;
-}
+//#pragma mark - UITextViewDelegate
+//
+//- (BOOL)textFieldShouldReturn:(UITextField *)textField
+//{
+//	[self updateItem:textField.tag withText:textField.text];
+//	[textField resignFirstResponder];
+//
+//	return YES;
+//}
 
 @end
