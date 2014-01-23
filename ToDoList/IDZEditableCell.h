@@ -10,7 +10,7 @@
 
 @interface IDZEditableCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UITextField *todoText;
+@property (weak, nonatomic) IBOutlet UITextView *todoText;
 
 - (void)updateText:(NSString *)text withTag:(NSInteger)tag;
 

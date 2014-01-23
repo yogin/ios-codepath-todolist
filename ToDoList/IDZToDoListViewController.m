@@ -11,6 +11,8 @@
 
 @interface IDZToDoListViewController ()
 
+@property (strong, nonatomic) IDZEditableCell *cell;
+
 @property (strong, nonatomic) NSMutableArray *todoItems;
 
 - (IBAction)onAddItem:(id)sender;
@@ -125,11 +127,17 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
 	UITextView *tmpText = [[UITextView alloc] init];
+//	UITextView *tmpText = [self.tableView cellForRowAtIndexPath:indexPath];
 	tmpText.text = self.todoItems[indexPath.row];
 	
 	CGFloat width = self.tableView.frame.size.width;
-	CGSize size = [tmpText sizeThatFits:CGSizeMake(width, MAXFLOAT)];
 
+
+//	CGSize size = [tmpText.text sizeWithAttributes:@{NSFontAttributeName: tmpText.font}];
+//	tmpText si
+	CGSize size = [tmpText sizeThatFits:CGSizeMake(300, MAXFLOAT)];
+
+//	return 200;
 	return size.height;
 	
 //    UITextView *tempTV = [[UITextView alloc] init];
