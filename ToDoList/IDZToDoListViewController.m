@@ -69,8 +69,16 @@
 	
 	cell.todoLabel.text = item.text;
 	cell.tag = indexPath.row;
+	[cell sizeToFit];
 
     return cell;
+}
+
+- (void)tableView
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	cell = (IDZDisplayCell*) cell;
+	[cell.textLabel sizeToFit];
 }
 
 // Override to support conditional editing of the table view.
@@ -110,14 +118,19 @@
 
 //- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 //{
-//	UITextView *tmpText = [[UITextView alloc] init];
-//	tmpText.text = self.todoItems[indexPath.row];
+////	UITextView *tmpText = [[UITextView alloc] init];
+//	UILabel *tmpLabel = [[UILabel alloc] init];
+//	tmpLabel.numberOfLines = 0;
 //	
-//	CGFloat width = self.tableView.frame.size.width;
+//	IDZToDoItem *item = self.todoItems[indexPath.row];
+//	tmpLabel.text = item.text;
 //	
-//	CGSize size = [tmpText sizeThatFits:CGSizeMake(300, MAXFLOAT)];
+////	CGFloat width = self.tableView.frame.size.width;
+//	
+//	CGSize size = [tmpLabel sizeThatFits:CGSizeMake(280, MAXFLOAT)];
+////	CGSize rect = [item.text sizeWithAttributes:@{NSFontAttributeName: tmpLabel.font}];
 //
-//	return size.height;
+//	return size.height + 16;
 //}
 
 
