@@ -10,6 +10,6 @@
 
 @interface IDZDisplayCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UILabel *todoLabel;
+@property (weak, nonatomic) IBOutlet UILabel *todoText;
 
 @end

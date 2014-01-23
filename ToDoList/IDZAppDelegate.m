@@ -7,17 +7,17 @@
 //
 
 #import "IDZAppDelegate.h"
-#import <Parse/Parse.h>
+//#import <Parse/Parse.h>
 
 @implementation IDZAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	[Parse setApplicationId:@"7JvfRZlajpalfTwoCFCc4jpVsf9sI56t8YbB4jwu"
-				  clientKey:@"UvP8rFqIsYkmY8SaKiE9uT4c8Y28JOl90PuKkxCK"];
-	
-	[PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-	
+//	[Parse setApplicationId:@"7JvfRZlajpalfTwoCFCc4jpVsf9sI56t8YbB4jwu"
+//				  clientKey:@"UvP8rFqIsYkmY8SaKiE9uT4c8Y28JOl90PuKkxCK"];
+//	
+//	[PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+
     return YES;
 }
 

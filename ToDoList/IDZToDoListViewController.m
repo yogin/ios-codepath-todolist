@@ -9,6 +9,7 @@
 #import "IDZToDoListViewController.h"
 #import "IDZToDoItem.h"
 #import "IDZDisplayCell.h"
+#import "IDZEditCell.h"
 
 
 @interface IDZToDoListViewController ()
@@ -63,22 +64,24 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"DisplayCell";
-    IDZDisplayCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+//    static NSString *CellIdentifier = @"DisplayCell";
+    static NSString *CellIdentifier = @"EditCell";
+    IDZEditCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 	IDZToDoItem *item = self.todoItems[indexPath.row];
 	
-	cell.todoLabel.text = item.text;
-	cell.tag = indexPath.row;
+	cell.todoText.delegate = self;
+	cell.todoText.text = item.text;
+	cell.todoText.tag = indexPath.row;
 	[cell sizeToFit];
 
     return cell;
 }
 
-- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-	cell = (IDZDisplayCell*) cell;
-	[cell.textLabel sizeToFit];
-}
+//- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//	cell = (IDZDisplayCell*) cell;
+//	[cell.textLabel sizeToFit];
+//}
 
 // Override to support conditional editing of the table view.
 //- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
@@ -115,8 +118,30 @@
 //}
 
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+//	IDZEditCell *editCell = [[IDZEditCell alloc] init];
+
+	UITextView *textView = [[UITextView alloc] init];
+	textView.text = [self.todoItems[indexPath.row] text];
+
+//	editCell.todoText.text = [self.todoItems[indexPath.row] text];
+//	CGSize textSize = [editCell.todoText sizeThatFits:CGSizeMake(280, MAXFLOAT)];
+
+//	CGSize textSize = editCell.todoText.frame.size;
+
+	//	CGSizeMake(<#CGFloat width#>, <#CGFloat height#>)
+
+	CGSize size = [textView sizeThatFits:CGSizeMake(270, MAXFLOAT)];
+
+	return size.height + 22;
+
+
+//	static UIFont textFont = [[[UITextView alloc] init] font];
+//	IDZToDoItem *item = self.todoItems[indexPath.row];
+//	CGSize textSize = [item.text sizeWithAttributes:@{NSFontAttributeName: }];
+
+//	return 100;
 ////	UITextView *tmpText = [[UITextView alloc] init];
 //	UILabel *tmpLabel = [[UILabel alloc] init];
 //	tmpLabel.numberOfLines = 0;
@@ -130,32 +155,32 @@
 ////	CGSize rect = [item.text sizeWithAttributes:@{NSFontAttributeName: tmpLabel.font}];
 //
 //	return size.height + 16;
-//}
+}
 
 
 #pragma mark - Navigation
 
 // In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-	
-	if ([[segue identifier] isEqual:@"editItemSegue"]) {
-		IDZEditItemViewController *editVC = [segue destinationViewController];
-		editVC.delegate = self;
-		UITableViewCell *cell = (UITableViewCell *) sender;
-		IDZToDoItem *item = self.todoItems[cell.tag];
-		[editVC setText:item.text withIndex:cell.tag];
-	}
-}
+//- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+//{
+//    // Get the new view controller using [segue destinationViewController].
+//    // Pass the selected object to the new view controller.
+//	
+//	if ([[segue identifier] isEqual:@"editItemSegue"]) {
+//		IDZEditItemViewController *editVC = [segue destinationViewController];
+//		editVC.delegate = self;
+//		UITableViewCell *cell = (UITableViewCell *) sender;
+//		IDZToDoItem *item = self.todoItems[cell.tag];
+//		[editVC setText:item.text withIndex:cell.tag];
+//	}
+//}
 
 
 #pragma mark - Actions
 
 - (IBAction)onAddItem:(id)sender
 {
-	IDZToDoItem *item = [IDZToDoItem itemWithText:@"new task to do"];
+	IDZToDoItem *item = [IDZToDoItem itemWithText:@"Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."];
 	[self.todoItems insertObject:item atIndex:0];
 	[self.tableView reloadData];
 }
@@ -204,13 +229,14 @@
 //	[defaults setObject:self.todoItems forKey:@"todoItems"];
 }
 
+#pragma mark - UITextViewDelegate
 
-#pragma mark - IDZEditItemViewControllerDelegate
-
-- (void)updateToDoItemText:(NSString *)text atIndex:(NSInteger)index
+- (BOOL)textViewShouldEndEditing:(UITextView *)textView
 {
-	[self updateItem:index withText:text];
-	[self.tableView reloadData];
+	IDZToDoItem *item = self.todoItems[textView.tag];
+	[item updateText:textView.text];
+
+	return YES;
 }
 
 @end

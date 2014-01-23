@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="uQS-pN-dvP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="13A603" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="uQS-pN-dvP">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
@@ -13,30 +13,32 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleAspectFit" selectionStyle="default" indentationWidth="10" reuseIdentifier="DisplayCell" rowHeight="38" id="Q3t-oF-rRm" customClass="IDZDisplayCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditCell" id="keG-b4-A2X" customClass="IDZEditCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q3t-oF-rRm" id="dP3-y8-lzx">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="keG-b4-A2X" id="K43-bM-Wxr">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="37"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" and hopefully it should resize the cell it's in, a bit longer is good too!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="k9o-vO-fgP">
-                                            <rect key="frame" x="20" y="8" width="280" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3rP-O9-YRA">
+                                            <rect key="frame" x="20" y="0.0" width="280" height="37"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="14"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                            <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
+                                        </textView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="k9o-vO-fgP" secondAttribute="bottom" constant="8" id="E7g-lS-Pvu"/>
-                                        <constraint firstItem="k9o-vO-fgP" firstAttribute="top" secondItem="dP3-y8-lzx" secondAttribute="top" constant="8" id="Z99-cv-31x"/>
-                                        <constraint firstItem="k9o-vO-fgP" firstAttribute="leading" secondItem="dP3-y8-lzx" secondAttribute="leading" constant="20" id="aKq-Th-abz"/>
-                                        <constraint firstAttribute="trailing" secondItem="k9o-vO-fgP" secondAttribute="trailing" constant="20" id="mn3-9J-YHZ"/>
+                                        <constraint firstItem="3rP-O9-YRA" firstAttribute="top" secondItem="K43-bM-Wxr" secondAttribute="top" id="ApQ-rL-UfW"/>
+                                        <constraint firstItem="3rP-O9-YRA" firstAttribute="leading" secondItem="K43-bM-Wxr" secondAttribute="leading" constant="20" id="Frm-3J-Bgv"/>
+                                        <constraint firstAttribute="trailing" secondItem="3rP-O9-YRA" secondAttribute="trailing" constant="20" id="Ji6-fw-p0T"/>
+                                        <constraint firstAttribute="bottom" secondItem="3rP-O9-YRA" secondAttribute="bottom" id="nMI-Fh-kEB"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="todoLabel" destination="k9o-vO-fgP" id="dC9-YV-Rzb"/>
-                                    <segue destination="Hzs-0g-9oe" kind="modal" identifier="editItemSegue" id="dol-EM-62f"/>
+                                    <outlet property="todoText" destination="3rP-O9-YRA" id="12M-DS-X3F"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -56,60 +58,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e0a-I9-h6O" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="600" y="232"/>
-        </scene>
-        <!--Edit Item View Controller-->
-        <scene sceneID="oet-c0-PW8">
-            <objects>
-                <viewController id="Hzs-0g-9oe" customClass="IDZEditItemViewController" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="6aS-t1-zye"/>
-                        <viewControllerLayoutGuide type="bottom" id="fUc-IO-4Vg"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="rKw-rB-8I9">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="A0W-q6-Rsl">
-                                <rect key="frame" x="0.0" y="19" width="320" height="44"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <items>
-                                    <navigationItem title="Task Description" id="L5K-dA-OMR">
-                                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="F5b-8b-Krp">
-                                            <connections>
-                                                <action selector="onDoneButton:" destination="Hzs-0g-9oe" id="L0N-DE-o3E"/>
-                                            </connections>
-                                        </barButtonItem>
-                                    </navigationItem>
-                                </items>
-                            </navigationBar>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yrf-DF-a6F">
-                                <rect key="frame" x="0.0" y="63" width="320" height="505"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES" calendarEvent="YES"/>
-                            </textView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="yrf-DF-a6F" firstAttribute="top" secondItem="6aS-t1-zye" secondAttribute="bottom" constant="43" id="27X-hT-4WK"/>
-                            <constraint firstItem="A0W-q6-Rsl" firstAttribute="leading" secondItem="rKw-rB-8I9" secondAttribute="leading" id="EQQ-mk-E2U"/>
-                            <constraint firstItem="fUc-IO-4Vg" firstAttribute="top" secondItem="yrf-DF-a6F" secondAttribute="bottom" id="Gq1-jI-dzM"/>
-                            <constraint firstItem="A0W-q6-Rsl" firstAttribute="top" secondItem="rKw-rB-8I9" secondAttribute="top" constant="19" id="SON-8A-eCV"/>
-                            <constraint firstItem="yrf-DF-a6F" firstAttribute="leading" secondItem="rKw-rB-8I9" secondAttribute="leading" id="cLy-Rp-XYc"/>
-                            <constraint firstAttribute="trailing" secondItem="A0W-q6-Rsl" secondAttribute="trailing" id="eAY-wA-4vz"/>
-                            <constraint firstAttribute="trailing" secondItem="yrf-DF-a6F" secondAttribute="trailing" id="h2f-Lq-646"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="itemText" destination="yrf-DF-a6F" id="IiG-lK-sXK"/>
-                        <outlet property="itemTextBottomConstraint" destination="Gq1-jI-dzM" id="92u-8B-ojq"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="qK2-Wn-Ztt" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1094" y="231"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JOw-wp-uFn">
