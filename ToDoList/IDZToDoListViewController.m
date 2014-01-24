@@ -158,7 +158,7 @@
 
 - (IBAction)onAddItem:(id)sender
 {
-	IDZToDoItem *item = [IDZToDoItem itemWithText:@"new task to do" forUser:[PFUser currentUser]];
+	IDZToDoItem *item = [IDZToDoItem itemWithText:@"" forUser:[PFUser currentUser]];
 	self.shouldEditNewItem = YES;
 	[self.todoItems insertObject:item atIndex:0];
 	[self.tableView reloadData];
