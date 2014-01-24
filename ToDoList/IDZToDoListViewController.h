@@ -10,6 +10,6 @@
 #import <Parse/Parse.h>
 #import "IDZEditCell.h"
 
-@interface IDZToDoListViewController : UITableViewController <UITextFieldDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
+@interface IDZToDoListViewController : UITableViewController <UITextFieldDelegate, UITextViewDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @end

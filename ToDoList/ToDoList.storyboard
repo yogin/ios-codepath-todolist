@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="EditCell" rowHeight="53" id="bZv-AO-Xeg" customClass="IDZEditCell">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="EditCellOriginal" rowHeight="53" id="bZv-AO-Xeg" customClass="IDZEditCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bZv-AO-Xeg" id="eSM-To-IcP">
@@ -51,6 +51,47 @@
                                 <connections>
                                     <outlet property="todoCheckbox" destination="ZBl-gA-cy0" id="Wwk-Aa-VtL"/>
                                     <outlet property="todoText" destination="gGe-XJ-SWd" id="RT2-m2-Yqt"/>
+                                </connections>
+                            </tableViewCell>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="EditCell" id="aub-H6-qCy" customClass="IDZEditCell">
+                                <rect key="frame" x="0.0" y="139" width="320" height="53"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aub-H6-qCy" id="lcB-qS-T6g">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="52"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bV8-88-bui" customClass="CTCheckbox">
+                                            <rect key="frame" x="11" y="8" width="36" height="35"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="1" green="0.33813065920000002" blue="0.45489016529999998" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="35" id="A2P-dg-tDd"/>
+                                                <constraint firstAttribute="width" constant="36" id="IMY-do-Hry"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="Sks-5p-3po"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="36" id="T5o-QI-MU1"/>
+                                            </constraints>
+                                        </view>
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dsD-9h-GF9">
+                                            <rect key="frame" x="55" y="0.0" width="245" height="52"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                        </textView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="centerY" secondItem="bV8-88-bui" secondAttribute="centerY" id="Ih0-eE-5db"/>
+                                        <constraint firstItem="dsD-9h-GF9" firstAttribute="leading" secondItem="bV8-88-bui" secondAttribute="trailing" constant="8" id="Pm6-kS-1Hc"/>
+                                        <constraint firstItem="bV8-88-bui" firstAttribute="leading" secondItem="lcB-qS-T6g" secondAttribute="leading" constant="11" id="VwW-Gw-FIJ"/>
+                                        <constraint firstItem="dsD-9h-GF9" firstAttribute="top" secondItem="lcB-qS-T6g" secondAttribute="top" id="lIN-Wh-z8R"/>
+                                        <constraint firstAttribute="trailing" secondItem="dsD-9h-GF9" secondAttribute="trailing" constant="20" id="rlv-ue-G4M"/>
+                                        <constraint firstAttribute="bottom" secondItem="dsD-9h-GF9" secondAttribute="bottom" id="wML-gp-W1F"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="todoCheckbox" destination="bV8-88-bui" id="KMx-gE-3ZU"/>
+                                    <outlet property="todoText" destination="dsD-9h-GF9" id="KUS-jr-Cb8"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

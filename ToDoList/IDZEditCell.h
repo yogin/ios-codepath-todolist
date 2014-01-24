@@ -11,7 +11,8 @@
 
 @interface IDZEditCell : UITableViewCell
 
-@property (weak, nonatomic) IBOutlet UITextField *todoText;
+//@property (weak, nonatomic) IBOutlet UITextField *todoText;
+@property (weak, nonatomic) IBOutlet UITextView *todoText;
 @property (weak, nonatomic) IBOutlet CTCheckbox *todoCheckbox;
 
 @end

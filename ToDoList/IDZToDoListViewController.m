@@ -146,22 +146,31 @@
 	[self moveItemFrom:fromIndexPath.row to:toIndexPath.row];
 }
 
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-////	UITextView *tmpText = [[UITextView alloc] init];
-//	UILabel *tmpLabel = [[UILabel alloc] init];
-//	tmpLabel.numberOfLines = 0;
-//	
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	IDZToDoItem *item = self.todoItems[indexPath.row];
+	IDZEditCell *cell = [[IDZEditCell alloc] init];
+//	CGFloat baseHeight = cell.frame.size.height - cell.todoText.frame.size.height;
+//
+//	UITextView *tmpText = [[UITextView alloc] init];
+//	tmpText.text = item.text;
+//
+//	CGSize size = [tmpText sizeThatFits:CGSizeMake(cell.todoText.frame.size.width, MAXFLOAT)];
+//	return baseHeight + size.height;
+
+	UILabel *tmpLabel = [[UILabel alloc] init];
+	tmpLabel.numberOfLines = 0;
+
 //	IDZToDoItem *item = self.todoItems[indexPath.row];
-//	tmpLabel.text = item.text;
-//	
+	tmpLabel.text = item.text;
+
 ////	CGFloat width = self.tableView.frame.size.width;
-//	
-//	CGSize size = [tmpLabel sizeThatFits:CGSizeMake(280, MAXFLOAT)];
+	
+	CGSize size = [tmpLabel sizeThatFits:CGSizeMake(cell.todoText.frame.size.width, MAXFLOAT)];
 ////	CGSize rect = [item.text sizeWithAttributes:@{NSFontAttributeName: tmpLabel.font}];
 //
-//	return size.height + 16;
-//}
+	return size.height + 17;
+}
 
 #pragma mark - Actions
 
@@ -262,6 +271,18 @@
 	[textField resignFirstResponder];
 
 	return YES;
+}
+
+#pragma mark - UITextViewDelegate
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+//	NSLog(@"textViewDidEndEditing");
+	[self updateItem:textView.tag withText:textView.text];
+	[textView resignFirstResponder];
+	[textView sizeToFit];
+	
+//	tableView 
 }
 
 #pragma mark - Parse
