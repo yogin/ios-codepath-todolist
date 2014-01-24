@@ -67,6 +67,23 @@
     [self loadItems];
 }
 
+- (void)setEditing:(BOOL)editing animated:(BOOL)animated
+{
+    [super setEditing:editing animated:animated];
+	
+	// when we are in editing mode, we want to disable all the checkboxes
+	if (editing == YES) {
+		for (IDZEditCell *cell in self.tableView.visibleCells) {
+			cell.todoCheckbox.enabled = NO;
+		}
+	}
+	else {
+		for (IDZEditCell *cell in self.tableView.visibleCells) {
+			cell.todoCheckbox.enabled = YES;
+		}
+	}
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
