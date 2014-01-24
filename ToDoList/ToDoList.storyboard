@@ -21,20 +21,32 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="placeholder text for a task" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gGe-XJ-SWd">
-                                            <rect key="frame" x="20" y="4" width="280" height="30"/>
+                                            <rect key="frame" x="45" y="4" width="255" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         </textField>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZBl-gA-cy0" customClass="CTCheckbox">
+                                            <rect key="frame" x="10" y="7" width="25" height="24"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <color key="backgroundColor" red="1" green="0.33813065918789975" blue="0.45489016525088311" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="25" id="QWI-kI-0TQ"/>
+                                                <constraint firstAttribute="height" constant="24" id="x5O-BK-XB0"/>
+                                            </constraints>
+                                        </view>
                                     </subviews>
                                     <constraints>
+                                        <constraint firstAttribute="centerY" secondItem="ZBl-gA-cy0" secondAttribute="centerY" id="1GN-aS-ozA"/>
+                                        <constraint firstItem="gGe-XJ-SWd" firstAttribute="leading" secondItem="ZBl-gA-cy0" secondAttribute="trailing" constant="10" id="AXO-Av-qr5"/>
+                                        <constraint firstItem="ZBl-gA-cy0" firstAttribute="leading" secondItem="eSM-To-IcP" secondAttribute="leading" constant="10" id="B4Q-Sh-QC2"/>
                                         <constraint firstAttribute="trailing" secondItem="gGe-XJ-SWd" secondAttribute="trailing" constant="20" id="Qwb-Cf-9sB"/>
                                         <constraint firstItem="gGe-XJ-SWd" firstAttribute="top" secondItem="eSM-To-IcP" secondAttribute="top" constant="4" id="jG7-uz-RK5"/>
                                         <constraint firstAttribute="bottom" secondItem="gGe-XJ-SWd" secondAttribute="bottom" constant="3" id="otq-JR-KX1"/>
-                                        <constraint firstItem="gGe-XJ-SWd" firstAttribute="leading" secondItem="eSM-To-IcP" secondAttribute="leading" constant="20" id="xFt-UP-32F"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="todoCheckbox" destination="ZBl-gA-cy0" id="Wwk-Aa-VtL"/>
                                     <outlet property="todoText" destination="gGe-XJ-SWd" id="RT2-m2-Yqt"/>
                                 </connections>
                             </tableViewCell>

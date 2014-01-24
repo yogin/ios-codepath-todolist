@@ -7,9 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CTCheckbox.h"
 
 @interface IDZEditCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UITextField *todoText;
+@property (weak, nonatomic) IBOutlet CTCheckbox *todoCheckbox;
 
 @end

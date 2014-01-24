@@ -1,14 +1,17 @@
 PODS:
+  - CTCheckbox (0.0.3)
   - Facebook-iOS-SDK (3.11.1)
   - MBProgressHUD (0.8)
   - Toast (2.2)
 
 DEPENDENCIES:
+  - CTCheckbox (~> 0.0.3)
   - Facebook-iOS-SDK (~> 3.11.1)
   - MBProgressHUD (~> 0.8)
   - Toast (~> 2.2)
 
 SPEC CHECKSUMS:
+  CTCheckbox: aba89fa87efc8d8da93252c59e4c9480ffa74396
   Facebook-iOS-SDK: 42a1de39170b858d675c2453d8aace55c51be2bb
   MBProgressHUD: 2bbc6f470111daf7f3eaa4eb12b8cbf01c4c0622
   Toast: 4123a86be86b619e118a134510ff6d00d9bd47e0

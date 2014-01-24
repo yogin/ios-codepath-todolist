@@ -11,6 +11,7 @@
 #import "IDZEditCell.h"
 #import "MBProgressHUD.h"
 #import "Toast+UIView.h"
+#import "CTCheckbox.h"
 
 @interface IDZToDoListViewController ()
 
