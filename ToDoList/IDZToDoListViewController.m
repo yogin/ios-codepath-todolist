@@ -75,11 +75,13 @@
 	if (editing == YES) {
 		for (IDZEditCell *cell in self.tableView.visibleCells) {
 			cell.todoCheckbox.enabled = NO;
+			cell.todoCheckbox.hidden = YES;
 		}
 	}
 	else {
 		for (IDZEditCell *cell in self.tableView.visibleCells) {
 			cell.todoCheckbox.enabled = YES;
+			cell.todoCheckbox.hidden = NO;
 		}
 	}
 }
