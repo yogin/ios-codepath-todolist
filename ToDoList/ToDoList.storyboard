@@ -8,41 +8,44 @@
         <scene sceneID="QrW-yc-Waf">
             <objects>
                 <tableViewController id="yAa-aj-dO4" customClass="IDZToDoListViewController" sceneMemberID="viewController">
-                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="38" sectionHeaderHeight="22" sectionFooterHeight="22" id="Wvu-fv-UuA">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="53" sectionHeaderHeight="22" sectionFooterHeight="22" id="Wvu-fv-UuA">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditCell" id="bZv-AO-Xeg" customClass="IDZEditCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="38"/>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditCell" rowHeight="53" id="bZv-AO-Xeg" customClass="IDZEditCell">
+                                <rect key="frame" x="0.0" y="86" width="320" height="53"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bZv-AO-Xeg" id="eSM-To-IcP">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="37"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="52"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="placeholder text for a task" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gGe-XJ-SWd">
-                                            <rect key="frame" x="45" y="4" width="255" height="30"/>
+                                            <rect key="frame" x="60" y="4" width="240" height="45"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <textInputTraits key="textInputTraits" returnKeyType="done"/>
                                         </textField>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZBl-gA-cy0" customClass="CTCheckbox">
-                                            <rect key="frame" x="10" y="7" width="25" height="24"/>
+                                            <rect key="frame" x="10" y="9" width="36" height="35"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <color key="backgroundColor" red="1" green="0.33813065918789975" blue="0.45489016525088311" alpha="1" colorSpace="calibratedRGB"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="25" id="QWI-kI-0TQ"/>
-                                                <constraint firstAttribute="height" constant="24" id="x5O-BK-XB0"/>
+                                                <constraint firstAttribute="width" constant="36" id="QWI-kI-0TQ"/>
+                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="Qe4-ZQ-iUr"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="36" id="idv-GD-uth"/>
+                                                <constraint firstAttribute="height" constant="35" id="x5O-BK-XB0"/>
                                             </constraints>
                                         </view>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="centerY" secondItem="ZBl-gA-cy0" secondAttribute="centerY" id="1GN-aS-ozA"/>
-                                        <constraint firstItem="gGe-XJ-SWd" firstAttribute="leading" secondItem="ZBl-gA-cy0" secondAttribute="trailing" constant="10" id="AXO-Av-qr5"/>
+                                        <constraint firstItem="gGe-XJ-SWd" firstAttribute="leading" secondItem="ZBl-gA-cy0" secondAttribute="trailing" constant="14" id="AXO-Av-qr5"/>
                                         <constraint firstItem="ZBl-gA-cy0" firstAttribute="leading" secondItem="eSM-To-IcP" secondAttribute="leading" constant="10" id="B4Q-Sh-QC2"/>
                                         <constraint firstAttribute="trailing" secondItem="gGe-XJ-SWd" secondAttribute="trailing" constant="20" id="Qwb-Cf-9sB"/>
                                         <constraint firstItem="gGe-XJ-SWd" firstAttribute="top" secondItem="eSM-To-IcP" secondAttribute="top" constant="4" id="jG7-uz-RK5"/>
                                         <constraint firstAttribute="bottom" secondItem="gGe-XJ-SWd" secondAttribute="bottom" constant="3" id="otq-JR-KX1"/>
+                                        <constraint firstAttribute="centerY" secondItem="ZBl-gA-cy0" secondAttribute="centerY" id="zbf-DJ-8ar"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>

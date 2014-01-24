@@ -104,6 +104,7 @@
 	}
 
 	cell.todoCheckbox.tag = indexPath.row;
+	cell.todoCheckbox.checkboxSideLength = 35;
 	
 	// enable checkbox action
 	[cell.todoCheckbox addTarget:self action:@selector(checkboxDidChange:) forControlEvents:UIControlEventValueChanged];
