@@ -89,6 +89,8 @@
 	cell.todoText.text = item.text;
 	cell.todoText.tag = indexPath.row;
 
+	[cell.todoCheckbox addTarget:self action:@selector(checkboxDidChange:) forControlEvents:UIControlEventValueChanged];
+
     return cell;
 }
 
@@ -153,25 +155,11 @@
 	[self.tableView reloadData];
 }
 
-//- (IBAction)onPinch:(id)sender
-//{
-//	if ([PFUser currentUser]) {
-//		UIAlertView *alertSignOut = [[UIAlertView alloc] initWithTitle:@"Logging out" message:@"Are you sure you want to logout?" delegate:nil cancelButtonTitle:@"Logout" otherButtonTitles:nil, nil];
-//		[alertSignOut show];
-//		[PFUser logOut];
-//	}
-//}
-
-
 - (void)updateItem:(NSInteger)index withText:(NSString *)text
 {
 	IDZToDoItem *item = self.todoItems[index];
 	item.text = text;
 	[self updateItemPriorities];
-//	item.priority = index;
-//	[item saveInBackground];
-
-//	self.todoItems[index] = item;
 }
 
 - (void)moveItemFrom:(NSInteger)from to:(NSInteger)to
@@ -194,8 +182,11 @@
 
 - (void)removeItem:(NSInteger)at
 {
+	IDZToDoItem *item = self.todoItems[at];
 	[self.todoItems removeObjectAtIndex:at];
-	[self saveItems];
+
+	[item deleteInBackground];
+	[self updateItemPriorities];
 }
 
 - (void)loadItems
@@ -218,11 +209,11 @@
 	}];
 }
 
-- (void)saveItems
+#pragma mark - IDZEditCellDelegate
+
+- (void)checkboxDidChange:(CTCheckbox *)checkbox
 {
-//	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//	[defaults setObject:self.todoItems forKey:@"todoItems"];
-//	[self.todoItems writeToFile:@"todoItems" atomically:YES];
+	NSLog(@"checkboxDidChange from IDZToDoListViewController!");
 }
 
 #pragma mark - UITextFieldDelegate

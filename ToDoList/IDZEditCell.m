@@ -34,14 +34,4 @@
     // Configure the view for the selected state
 }
 
-- (void)viewDidLoad
-{
-	[self.todoCheckbox addTarget:self action:@selector(checkboxDidChanged:) forControlEvents:UIControlEventValueChanged];
-}
-
-- (void)checkboxDidChanged:(CTCheckbox *)checkbox
-{
-    NSLog(@"%d", checkbox.checked);
-}
-
 @end

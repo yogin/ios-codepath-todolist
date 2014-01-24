@@ -17,8 +17,4 @@
 @property (retain) NSString *text;
 @property NSInteger priority;
 
-//- (void)updateText:(NSString *)text;
-- (void)deleteItem;
-- (NSString *)text;
-
 @end

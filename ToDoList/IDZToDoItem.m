@@ -29,27 +29,4 @@
 	return item;
 }
 
-//- (void)updateText:(NSString *)text
-//{
-//	self.text = text;
-////	[self save];
-//}
-
-- (void)deleteItem
-{
-	
-}
-
-//- (NSString *)text
-//{
-//	return _text;
-//}
-//
-//- (void)save
-//{
-//	PFObject *taskObject = [PFObject objectWithClassName:@"Task"];
-//	taskObject[@"text"] = _text;
-//	[taskObject saveInBackground];
-//}
-
 @end
