@@ -137,8 +137,12 @@
 - (void)updateItem:(NSInteger)index withText:(NSString *)text
 {
 	IDZToDoItem *item = self.todoItems[index];
-	[item updateText:text];
-	self.todoItems[index] = item;
+	item.text = text;
+	[self updateItemPriorities];
+//	item.priority = index;
+//	[item saveInBackground];
+
+//	self.todoItems[index] = item;
 }
 
 - (void)moveItemFrom:(NSInteger)from to:(NSInteger)to
@@ -147,7 +151,16 @@
 
 	[self.todoItems removeObjectAtIndex:from];
 	[self.todoItems insertObject:item atIndex:to];
-//	[self saveItems];
+	[self updateItemPriorities];
+}
+
+- (void)updateItemPriorities
+{
+	for (int priority = 0; priority < self.todoItems.count; priority++) {
+		IDZToDoItem *item = self.todoItems[priority];
+		item.priority = priority;
+		[item saveInBackground];
+	}
 }
 
 - (void)removeItem:(NSInteger)at
@@ -158,17 +171,14 @@
 
 - (void)loadItems
 {
-//	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-//	NSArray *savedItems = [defaults arrayForKey:@"todoItems"];
-//
-//	if (savedItems) {
-//		self.todoItems = [savedItems mutableCopy];
-//	}
-//	else {
-//		self.todoItems = [[NSMutableArray alloc] init];
-//	}
-//
-	self.todoItems = [[NSMutableArray alloc] init];
+	PFQuery *query = [IDZToDoItem query];
+	[query orderByAscending:@"priority"];
+	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
+		// TODO: handle error similar to rotten tomatoes
+
+		self.todoItems = [objects mutableCopy];
+		[self.tableView reloadData];
+	}];
 }
 
 - (void)saveItems

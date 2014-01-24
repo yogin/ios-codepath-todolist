@@ -7,37 +7,48 @@
 //
 
 #import "IDZToDoItem.h"
-//#import <Parse/Parse.h>
-
-@interface IDZToDoItem ()
-
-@property (strong, nonatomic) NSString *text;
-
-@end
+#import <Parse/PFObject+Subclass.h>
 
 @implementation IDZToDoItem
 
+@dynamic text;
+@dynamic priority;
+
++ (NSString *)parseClassName
+{
+	return @"Task";
+}
+
 + (IDZToDoItem *)itemWithText:(NSString *)text
 {
-	IDZToDoItem *item = [[IDZToDoItem alloc] init];
-	[item updateText:text];
+	IDZToDoItem *item = [IDZToDoItem object];
+	item.text = text;
+	item.priority = 0;
 	
 	return item;
 }
 
-- (void)updateText:(NSString *)text
-{
-	self.text = text;
-}
+//- (void)updateText:(NSString *)text
+//{
+//	self.text = text;
+////	[self save];
+//}
 
 - (void)deleteItem
 {
 	
 }
 
-- (NSString *)text
-{
-	return _text;
-}
+//- (NSString *)text
+//{
+//	return _text;
+//}
+//
+//- (void)save
+//{
+//	PFObject *taskObject = [PFObject objectWithClassName:@"Task"];
+//	taskObject[@"text"] = _text;
+//	[taskObject saveInBackground];
+//}
 
 @end

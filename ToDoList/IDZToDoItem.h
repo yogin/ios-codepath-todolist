@@ -7,12 +7,17 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Parse/Parse.h>
 
-@interface IDZToDoItem : NSObject
+@interface IDZToDoItem : PFObject<PFSubclassing>
 
++ (NSString *)parseClassName;
 + (IDZToDoItem *)itemWithText:(NSString *)text;
 
-- (void)updateText:(NSString *)text;
+@property (retain) NSString *text;
+@property NSInteger priority;
+
+//- (void)updateText:(NSString *)text;
 - (void)deleteItem;
 - (NSString *)text;
 

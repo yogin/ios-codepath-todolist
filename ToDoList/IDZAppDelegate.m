@@ -8,16 +8,17 @@
 
 #import "IDZAppDelegate.h"
 #import <Parse/Parse.h>
+#import "IDZToDoItem.h"
 
 @implementation IDZAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-	[Parse setApplicationId:@"7JvfRZlajpalfTwoCFCc4jpVsf9sI56t8YbB4jwu"
-				  clientKey:@"UvP8rFqIsYkmY8SaKiE9uT4c8Y28JOl90PuKkxCK"];
-	
+	[IDZToDoItem registerSubclass];
+	[Parse setApplicationId:@"YI3bUVjYvZT0NZAh78sdLaXKbn77ig8RRXQA5Zhb"
+				  clientKey:@"VvxDySAJB9wyszaGI6ThTQpEWO22SX38eheiQXYc"];
 	[PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-	
+
     return YES;
 }
 
