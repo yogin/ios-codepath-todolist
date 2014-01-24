@@ -12,7 +12,7 @@
 @interface IDZToDoItem : PFObject<PFSubclassing>
 
 + (NSString *)parseClassName;
-+ (IDZToDoItem *)itemWithText:(NSString *)text;
++ (IDZToDoItem *)itemWithText:(NSString *)text forUser:(PFUser *)user;
 
 @property (retain) NSString *text;
 @property NSInteger priority;

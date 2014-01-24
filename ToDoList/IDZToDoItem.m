@@ -19,9 +19,10 @@
 	return @"Task";
 }
 
-+ (IDZToDoItem *)itemWithText:(NSString *)text
++ (IDZToDoItem *)itemWithText:(NSString *)text forUser:(PFUser *)user
 {
 	IDZToDoItem *item = [IDZToDoItem object];
+	item.ACL = [PFACL ACLWithUser:user];
 	item.text = text;
 	item.priority = 0;
 	

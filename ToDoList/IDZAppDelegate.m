@@ -19,6 +19,10 @@
 				  clientKey:@"VvxDySAJB9wyszaGI6ThTQpEWO22SX38eheiQXYc"];
 	[PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
 
+//	[PFUser enableAutomaticUser];
+//	PFACL *defaultACL = [PFACL ACL];
+//	[PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
+	
     return YES;
 }
 

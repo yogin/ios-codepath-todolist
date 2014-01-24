@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
-@interface IDZToDoListViewController : UITableViewController <UITextFieldDelegate>
+@interface IDZToDoListViewController : UITableViewController <UITextFieldDelegate, PFLogInViewControllerDelegate, PFSignUpViewControllerDelegate>
 
 @end

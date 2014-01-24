@@ -12,12 +12,15 @@
 #import "MBProgressHUD.h"
 #import "Toast+UIView.h"
 #import "CTCheckbox.h"
+#import "IDZLoginViewController.h"
+#import "IDZSignupViewController.h"
 
 @interface IDZToDoListViewController ()
 
 @property (strong, nonatomic) NSMutableArray *todoItems;
 @property BOOL shouldEditNewItem;
 @property (strong, nonatomic) MBProgressHUD *hud;
+@property (strong, nonatomic) PFUser *currentUser;
 
 - (IBAction)onAddItem:(id)sender;
 
@@ -40,8 +43,14 @@
 {
     [super viewDidLoad];
 
-	[self setup];
-	self.navigationItem.leftBarButtonItem = self.editButtonItem;
+	self.currentUser = [PFUser currentUser];
+	if (self.currentUser) {
+		[self setup];
+		self.navigationItem.leftBarButtonItem = self.editButtonItem;
+	}
+	else {
+		[self login];
+	}
 }
 
 - (void)setup
@@ -80,7 +89,6 @@
 	cell.todoText.delegate = self;
 	cell.todoText.text = item.text;
 	cell.todoText.tag = indexPath.row;
-//	[cell sizeToFit];
 
     return cell;
 }
@@ -140,7 +148,7 @@
 
 - (IBAction)onAddItem:(id)sender
 {
-	IDZToDoItem *item = [IDZToDoItem itemWithText:@"new task to do"];
+	IDZToDoItem *item = [IDZToDoItem itemWithText:@"new task to do" forUser:self.currentUser];
 	self.shouldEditNewItem = YES;
 	[self.todoItems insertObject:item atIndex:0];
 	[self.tableView reloadData];
@@ -217,6 +225,35 @@
 	[textField resignFirstResponder];
 
 	return YES;
+}
+
+#pragma mark - Parse
+
+- (void)login
+{
+	IDZLoginViewController *logInController = [[IDZLoginViewController alloc] init];
+	logInController.delegate = self;
+	
+	logInController.signUpController = [[IDZSignupViewController alloc] init];
+	logInController.signUpController.delegate = self;
+
+	logInController.fields =  PFLogInFieldsUsernameAndPassword
+							| PFLogInFieldsLogInButton
+							| PFLogInFieldsSignUpButton
+							| PFLogInFieldsPasswordForgotten
+							;
+	
+	[self presentViewController:logInController animated:YES completion:nil];
+}
+
+- (void)logInViewController:(PFLogInViewController *)logInController didLogInUser:(PFUser *)user
+{
+	[self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)signUpViewController:(PFSignUpViewController *)signUpController didSignUpUser:(PFUser *)user
+{
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
