@@ -68,7 +68,6 @@
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e0a-I9-h6O" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <pinchGestureRecognizer id="w7R-u8-8EW"/>
             </objects>
             <point key="canvasLocation" x="600" y="232"/>
         </scene>
