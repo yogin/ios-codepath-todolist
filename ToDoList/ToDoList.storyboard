@@ -13,39 +13,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleAspectFit" selectionStyle="default" indentationWidth="10" reuseIdentifier="DisplayCell" rowHeight="38" id="Q3t-oF-rRm" customClass="IDZDisplayCell">
-                                <rect key="frame" x="0.0" y="86" width="320" height="38"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Q3t-oF-rRm" id="dP3-y8-lzx">
-                                    <rect key="frame" x="0.0" y="0.0" width="320" height="37"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" and hopefully it should resize the cell it's in, a bit longer is good too!" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="k9o-vO-fgP">
-                                            <rect key="frame" x="20" y="8" width="280" height="21"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="k9o-vO-fgP" secondAttribute="bottom" constant="8" id="E7g-lS-Pvu"/>
-                                        <constraint firstItem="k9o-vO-fgP" firstAttribute="top" secondItem="dP3-y8-lzx" secondAttribute="top" constant="8" id="Z99-cv-31x"/>
-                                        <constraint firstItem="k9o-vO-fgP" firstAttribute="leading" secondItem="dP3-y8-lzx" secondAttribute="leading" constant="20" id="aKq-Th-abz"/>
-                                        <constraint firstAttribute="trailing" secondItem="k9o-vO-fgP" secondAttribute="trailing" constant="20" id="mn3-9J-YHZ"/>
-                                    </constraints>
-                                </tableViewCellContentView>
-                                <connections>
-                                    <outlet property="todoLabel" destination="k9o-vO-fgP" id="dC9-YV-Rzb"/>
-                                </connections>
-                            </tableViewCell>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="EditCell" id="bZv-AO-Xeg" customClass="IDZEditCell">
-                                <rect key="frame" x="0.0" y="124" width="320" height="38"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="38"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="bZv-AO-Xeg" id="eSM-To-IcP">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="37"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gGe-XJ-SWd">
+                                        <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="placeholder text for a task" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gGe-XJ-SWd">
                                             <rect key="frame" x="20" y="4" width="280" height="30"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>

@@ -32,7 +32,6 @@
 		15A2AB0B1890E95D0075B056 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A2AB0A1890E95D0075B056 /* StoreKit.framework */; };
 		15A2AB0D1890E9650075B056 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 15A2AB0C1890E9650075B056 /* SystemConfiguration.framework */; };
 		15A2AB111890E9F60075B056 /* IDZToDoItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A2AB101890E9F60075B056 /* IDZToDoItem.m */; };
-		15A2AB141890F1C50075B056 /* IDZDisplayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A2AB131890F1C50075B056 /* IDZDisplayCell.m */; };
 		15EB298C1891E3A4007E640E /* IDZEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB298B1891E3A4007E640E /* IDZEditCell.m */; };
 /* End PBXBuildFile section */
 
@@ -78,8 +77,6 @@
 		15A2AB0C1890E9650075B056 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		15A2AB0F1890E9F60075B056 /* IDZToDoItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDZToDoItem.h; sourceTree = "<group>"; };
 		15A2AB101890E9F60075B056 /* IDZToDoItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDZToDoItem.m; sourceTree = "<group>"; };
-		15A2AB121890F1C50075B056 /* IDZDisplayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDZDisplayCell.h; sourceTree = "<group>"; };
-		15A2AB131890F1C50075B056 /* IDZDisplayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDZDisplayCell.m; sourceTree = "<group>"; };
 		15EB298A1891E3A4007E640E /* IDZEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDZEditCell.h; sourceTree = "<group>"; };
 		15EB298B1891E3A4007E640E /* IDZEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDZEditCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -214,8 +211,6 @@
 		15589C1A188E53B30088028D /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				15A2AB121890F1C50075B056 /* IDZDisplayCell.h */,
-				15A2AB131890F1C50075B056 /* IDZDisplayCell.m */,
 				15EB298A1891E3A4007E640E /* IDZEditCell.h */,
 				15EB298B1891E3A4007E640E /* IDZEditCell.m */,
 			);
@@ -329,7 +324,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				15589BF6188E48AE0088028D /* IDZAppDelegate.m in Sources */,
-				15A2AB141890F1C50075B056 /* IDZDisplayCell.m in Sources */,
 				15EB298C1891E3A4007E640E /* IDZEditCell.m in Sources */,
 				15589C19188E4ED90088028D /* IDZToDoListViewController.m in Sources */,
 				15589BF2188E48AE0088028D /* main.m in Sources */,
