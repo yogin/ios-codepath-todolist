@@ -9,12 +9,14 @@
 #import "IDZToDoListViewController.h"
 #import "IDZToDoItem.h"
 #import "IDZEditCell.h"
-
+#import "MBProgressHUD.h"
+#import "Toast+UIView.h"
 
 @interface IDZToDoListViewController ()
 
 @property (strong, nonatomic) NSMutableArray *todoItems;
 @property BOOL shouldEditNewItem;
+@property (strong, nonatomic) MBProgressHUD *hud;
 
 - (IBAction)onAddItem:(id)sender;
 
@@ -43,7 +45,17 @@
 
 - (void)setup
 {
+	self.refreshControl = [[UIRefreshControl alloc] init];
+	[self.refreshControl addTarget:self
+							action:@selector(onRefresh:forState:)
+				  forControlEvents:UIControlEventValueChanged];
+
 	[self loadItems];
+}
+
+- (void)onRefresh:(id)sender forState:(UIControlState)state
+{
+    [self loadItems];
 }
 
 #pragma mark - Table view data source
@@ -171,13 +183,21 @@
 
 - (void)loadItems
 {
+	self.hud = [MBProgressHUD showHUDAddedTo:self.tableView animated:YES];
+
 	PFQuery *query = [IDZToDoItem query];
 	[query orderByAscending:@"priority"];
 	[query findObjectsInBackgroundWithBlock:^(NSArray *objects, NSError *error) {
-		// TODO: handle error similar to rotten tomatoes
+		if (error) {
+			[self.view makeToast:@"Network Error" duration:3.0 position:@"top"];
+		}
+		else {
+			self.todoItems = [objects mutableCopy];
+			[self.tableView reloadData];
+		}
 
-		self.todoItems = [objects mutableCopy];
-		[self.tableView reloadData];
+		[self.refreshControl endRefreshing];
+		[self.hud hide:YES];
 	}];
 }
 
