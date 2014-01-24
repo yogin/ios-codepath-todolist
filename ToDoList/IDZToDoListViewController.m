@@ -20,7 +20,6 @@
 @property (strong, nonatomic) NSMutableArray *todoItems;
 @property BOOL shouldEditNewItem;
 @property (strong, nonatomic) MBProgressHUD *hud;
-@property (strong, nonatomic) PFUser *currentUser;
 
 - (IBAction)onAddItem:(id)sender;
 
@@ -43,8 +42,8 @@
 {
     [super viewDidLoad];
 
-	self.currentUser = [PFUser currentUser];
-	if (self.currentUser) {
+	PFUser *currentUser = [PFUser currentUser];
+	if (currentUser) {
 		[self setup];
 		self.navigationItem.leftBarButtonItem = self.editButtonItem;
 	}
@@ -148,11 +147,20 @@
 
 - (IBAction)onAddItem:(id)sender
 {
-	IDZToDoItem *item = [IDZToDoItem itemWithText:@"new task to do" forUser:self.currentUser];
+	IDZToDoItem *item = [IDZToDoItem itemWithText:@"new task to do" forUser:[PFUser currentUser]];
 	self.shouldEditNewItem = YES;
 	[self.todoItems insertObject:item atIndex:0];
 	[self.tableView reloadData];
 }
+
+//- (IBAction)onPinch:(id)sender
+//{
+//	if ([PFUser currentUser]) {
+//		UIAlertView *alertSignOut = [[UIAlertView alloc] initWithTitle:@"Logging out" message:@"Are you sure you want to logout?" delegate:nil cancelButtonTitle:@"Logout" otherButtonTitles:nil, nil];
+//		[alertSignOut show];
+//		[PFUser logOut];
+//	}
+//}
 
 
 - (void)updateItem:(NSInteger)index withText:(NSString *)text
