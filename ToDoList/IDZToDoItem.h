@@ -16,5 +16,6 @@
 
 @property (retain) NSString *text;
 @property NSInteger priority;
+@property NSDate *completed;
 
 @end

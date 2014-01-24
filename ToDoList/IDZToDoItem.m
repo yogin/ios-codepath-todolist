@@ -13,6 +13,7 @@
 
 @dynamic text;
 @dynamic priority;
+@dynamic completed;
 
 + (NSString *)parseClassName
 {
@@ -25,6 +26,7 @@
 	item.ACL = [PFACL ACLWithUser:user];
 	item.text = text;
 	item.priority = 0;
+	item.completed = nil;
 	
 	return item;
 }

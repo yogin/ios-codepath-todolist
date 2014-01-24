@@ -84,11 +84,28 @@
     static NSString *CellIdentifier = @"EditCell";
     IDZEditCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
 	IDZToDoItem *item = self.todoItems[indexPath.row];
-	
+
+	// disable checkbox action while we setup the cell
+	[cell.todoCheckbox removeTarget:self action:@selector(checkboxDidChange:) forControlEvents:UIControlEventValueChanged];
+
 	cell.todoText.delegate = self;
 	cell.todoText.text = item.text;
 	cell.todoText.tag = indexPath.row;
+	
+	if (item.completed) {
+		cell.todoCheckbox.checked = YES;
+		cell.todoText.textColor = [UIColor grayColor];
+		cell.todoCheckbox.checkboxColor = [UIColor grayColor];
+	}
+	else {
+		cell.todoCheckbox.checked = NO;
+		cell.todoText.textColor = [UIColor blackColor];
+		cell.todoCheckbox.checkboxColor = [UIColor blackColor];
+	}
 
+	cell.todoCheckbox.tag = indexPath.row;
+	
+	// enable checkbox action
 	[cell.todoCheckbox addTarget:self action:@selector(checkboxDidChange:) forControlEvents:UIControlEventValueChanged];
 
     return cell;
@@ -214,6 +231,26 @@
 - (void)checkboxDidChange:(CTCheckbox *)checkbox
 {
 	NSLog(@"checkboxDidChange from IDZToDoListViewController!");
+
+	IDZToDoItem *item = self.todoItems[checkbox.tag];
+	
+	if (checkbox.checked) {
+		item.completed = [NSDate date];
+	}
+	else {
+		item.completed = nil;
+	}
+
+	[item saveInBackground];
+	[self.tableView reloadData];
+	
+//	NSIndexPath *indexPath = [[NSIndexPath alloc] initWithIndex:0];
+//	indexPath = [indexPath indexPathByAddingIndex:checkbox.tag];
+//	
+//	IDZEditCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
+//	cell.todoText.textColor = [UIColor grayColor];
+//	[cell setNeedsDisplay];
+
 }
 
 #pragma mark - UITextFieldDelegate
