@@ -183,7 +183,7 @@
 												  options:NSStringDrawingUsesLineFragmentOrigin
 											   attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]}
 												  context:nil];
-	NSLog(@"using sizes: %f x %f", width, textRect.size.height);
+
 	return textRect.size.height + 20;
 }
 
@@ -226,9 +226,7 @@
 {
 	IDZToDoItem *item = self.todoItems[index];
 
-	// only update if the text has changed, will save many calls to Parse!
 	if (![item.text isEqualToString:text]) {
-		NSLog(@"item text changed!");
 		item.text = text;
 		[self updateItemPriorities];
 	}
@@ -248,8 +246,14 @@
 	for (int priority = 0; priority < self.todoItems.count; priority++) {
 		IDZToDoItem *item = self.todoItems[priority];
 		item.priority = priority;
-		[item saveInBackground];
 	}
+	
+	[PFObject saveAllInBackground:self.todoItems];
+}
+
+- (void)saveItem:(IDZToDoItem *)item
+{
+	[item saveInBackground];
 }
 
 - (void)removeItem:(NSInteger)at
@@ -294,7 +298,7 @@
 		item.completed = nil;
 	}
 
-	[item saveInBackground];
+	[self saveItem:item];
 	[self.tableView reloadData];
 }
 
@@ -308,10 +312,7 @@
 
 - (void)textViewDidChange:(UITextView *)textView
 {
-	NSLog(@"textViewDidChange!");
-
 	// this is quite expensive, as it will save the item to Parse on every text change :(
-	// alternatively I could just update the item.text, and delay the sync to Parse somehow
 	[self updateItem:textView.tag withText:textView.text];
 	
 	[self.tableView beginUpdates];
