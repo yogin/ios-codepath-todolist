@@ -3,10 +3,6 @@ ios-codepath-todolist
 
 A ToDo List Application using Parse.com services to register and sign in users, and store ToDo tasks remotely so they can be accessed on multiple devices.
 
-This application supports portrait and landscape orientation, and should be suitable for both 4" and 3.5" screen sizes.
-
-Once logged in, you can shake your device to logout
-
 Features:
 ---------
 
@@ -19,6 +15,8 @@ Features:
  * Multi line tasks with recognition of addreses, dates, phone numbers, links.
  * Supports Emoji characters in your tasks!
  * Sign out (shake the device!)
+ * Supports portrait and landscape orientation
+ * Supports all screen sizes
 
 Screenshots:
 ------------
