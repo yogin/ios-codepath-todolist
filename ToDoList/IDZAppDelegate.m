@@ -14,6 +14,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+	application.applicationSupportsShakeToEdit = YES;
+
 	NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"plist"];
 	NSDictionary *settings = [NSDictionary dictionaryWithContentsOfFile:plistPath];
 	

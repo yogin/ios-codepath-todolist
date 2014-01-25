@@ -46,6 +46,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
+	[self becomeFirstResponder];
 	
 	PFUser *currentUser = [PFUser currentUser];
 	if (currentUser) {
@@ -53,6 +54,24 @@
 		self.navigationItem.leftBarButtonItem = self.editButtonItem;
 	}
 	else {
+		[self login];
+	}
+}
+
+- (BOOL)canBecomeFirstResponder {
+    return YES;
+}
+
+- (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
+{
+    if (motion == UIEventSubtypeMotionShake) {
+		NSLog(@"shake it!");
+		[PFUser logOut];
+		
+		// clear view so there are no artefacts
+		[self.todoItems removeAllObjects];
+		[self.tableView reloadData];
+		
 		[self login];
 	}
 }
