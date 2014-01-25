@@ -219,6 +219,7 @@
 	IDZToDoItem *item = [IDZToDoItem itemWithText:@"" forUser:[PFUser currentUser]];
 	self.shouldEditNewItem = YES;
 	[self.todoItems insertObject:item atIndex:0];
+	[self updateItemPriorities];
 	[self.tableView reloadData];
 }
 
