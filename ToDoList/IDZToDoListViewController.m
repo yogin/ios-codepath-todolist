@@ -65,7 +65,6 @@
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
     if (motion == UIEventSubtypeMotionShake) {
-		NSLog(@"shake it!");
 		[PFUser logOut];
 		
 		// clear view so there are no artefacts
