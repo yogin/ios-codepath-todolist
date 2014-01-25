@@ -109,6 +109,11 @@
 	}
 }
 
+- (BOOL)isPortraitOrientation
+{
+	return [[UIApplication sharedApplication] statusBarOrientation] == UIInterfaceOrientationPortrait;
+}
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -154,6 +159,34 @@
     return cell;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+	IDZToDoItem *item = self.todoItems[indexPath.row];
+	UITextView *textView = [[UITextView alloc] init];
+	
+	return [self heightForTextView:textView withItem:item];
+}
+
+- (CGFloat)heightForTextView:(UITextView *)textView withItem:(IDZToDoItem *)item
+{
+	if (item) {
+		[textView setAttributedText:[[NSAttributedString alloc] initWithString:item.text]];
+	}
+	
+	// adjust the textView width base on screen size and orientation
+	// the only constant width in the cells is the checkbox (64)
+	CGRect screenRect = [[UIScreen mainScreen] bounds];
+	CGFloat width = [self isPortraitOrientation] ? screenRect.size.width : screenRect.size.height;
+	width -= 64;
+
+	CGRect textRect = [textView.text boundingRectWithSize:CGSizeMake(width, MAXFLOAT)
+												  options:NSStringDrawingUsesLineFragmentOrigin
+											   attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]}
+												  context:nil];
+	NSLog(@"using sizes: %f x %f", width, textRect.size.height);
+	return textRect.size.height + 20;
+}
+
 // Override to support editing the table view.
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -192,8 +225,13 @@
 - (void)updateItem:(NSInteger)index withText:(NSString *)text
 {
 	IDZToDoItem *item = self.todoItems[index];
-	item.text = text;
-	[self updateItemPriorities];
+
+	// only update if the text has changed, will save many calls to Parse!
+	if (![item.text isEqualToString:text]) {
+		NSLog(@"item text changed!");
+		item.text = text;
+		[self updateItemPriorities];
+	}
 }
 
 - (void)moveItemFrom:(NSInteger)from to:(NSInteger)to
@@ -268,6 +306,27 @@
 	[textField resignFirstResponder];
 
 	return YES;
+}
+
+#pragma mark - UITextViewDelegate
+
+- (void)textViewDidEndEditing:(UITextView *)textView
+{
+	[self updateItem:textView.tag withText:textView.text];
+	[textView resignFirstResponder];
+//	[textView sizeToFit];
+}
+
+- (void)textViewDidChange:(UITextView *)textView
+{
+	NSLog(@"textViewDidChange!");
+
+	// this is quite expensive, as it will save the item to Parse on every text change :(
+	// alternatively I could just update the item.text, and delay the sync to Parse somehow
+	[self updateItem:textView.tag withText:textView.text];
+	
+	[self.tableView beginUpdates];
+	[self.tableView endUpdates];
 }
 
 #pragma mark - Parse
