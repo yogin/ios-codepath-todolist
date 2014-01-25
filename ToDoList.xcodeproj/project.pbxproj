@@ -35,6 +35,7 @@
 		15A2AB1A18922A840075B056 /* IDZLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A2AB1918922A840075B056 /* IDZLoginViewController.m */; };
 		15A2AB1D18922CE60075B056 /* dark-tile.gif in Resources */ = {isa = PBXBuildFile; fileRef = 15A2AB1C18922CE60075B056 /* dark-tile.gif */; };
 		15A2AB20189231B00075B056 /* IDZSignupViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 15A2AB1F189231B00075B056 /* IDZSignupViewController.m */; };
+		15A2AB2218934B930075B056 /* Settings.plist in Resources */ = {isa = PBXBuildFile; fileRef = 15A2AB2118934B930075B056 /* Settings.plist */; };
 		15EB298C1891E3A4007E640E /* IDZEditCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 15EB298B1891E3A4007E640E /* IDZEditCell.m */; };
 		85E1B6CFEAE1473AA8CD6750 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3BD9C5CB6F034FD3B88470D7 /* libPods.a */; };
 /* End PBXBuildFile section */
@@ -86,6 +87,7 @@
 		15A2AB1C18922CE60075B056 /* dark-tile.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "dark-tile.gif"; sourceTree = "<group>"; };
 		15A2AB1E189231B00075B056 /* IDZSignupViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDZSignupViewController.h; sourceTree = "<group>"; };
 		15A2AB1F189231B00075B056 /* IDZSignupViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDZSignupViewController.m; sourceTree = "<group>"; };
+		15A2AB2118934B930075B056 /* Settings.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Settings.plist; sourceTree = "<group>"; };
 		15EB298A1891E3A4007E640E /* IDZEditCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IDZEditCell.h; sourceTree = "<group>"; };
 		15EB298B1891E3A4007E640E /* IDZEditCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IDZEditCell.m; sourceTree = "<group>"; };
 		3BD9C5CB6F034FD3B88470D7 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -192,6 +194,7 @@
 				15589BEE188E48AE0088028D /* InfoPlist.strings */,
 				15589BF1188E48AE0088028D /* main.m */,
 				15589BF3188E48AE0088028D /* ToDoList-Prefix.pch */,
+				15A2AB2118934B930075B056 /* Settings.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -335,6 +338,7 @@
 				15589BF0188E48AE0088028D /* InfoPlist.strings in Resources */,
 				15A2AB1D18922CE60075B056 /* dark-tile.gif in Resources */,
 				15589BF8188E48AE0088028D /* Images.xcassets in Resources */,
+				15A2AB2218934B930075B056 /* Settings.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -14,14 +14,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+	NSString *plistPath = [[NSBundle mainBundle] pathForResource:@"Settings" ofType:@"plist"];
+	NSDictionary *settings = [NSDictionary dictionaryWithContentsOfFile:plistPath];
+	
 	[IDZToDoItem registerSubclass];
-	[Parse setApplicationId:@"YI3bUVjYvZT0NZAh78sdLaXKbn77ig8RRXQA5Zhb"
-				  clientKey:@"VvxDySAJB9wyszaGI6ThTQpEWO22SX38eheiQXYc"];
+	[Parse setApplicationId:settings[@"Parse"][@"applicationId"]
+				  clientKey:settings[@"Parse"][@"clientKey"]];
 	[PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-
-//	[PFUser enableAutomaticUser];
-//	PFACL *defaultACL = [PFACL ACL];
-//	[PFACL setDefaultACL:defaultACL withAccessForCurrentUser:YES];
 	
     return YES;
 }
