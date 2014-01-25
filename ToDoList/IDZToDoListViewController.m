@@ -212,7 +212,7 @@
 	[self moveItemFrom:fromIndexPath.row to:toIndexPath.row];
 }
 
-#pragma mark - Actions
+#pragma mark - Item Handling
 
 - (IBAction)onAddItem:(id)sender
 {
@@ -298,23 +298,12 @@
 	[self.tableView reloadData];
 }
 
-#pragma mark - UITextFieldDelegate
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-	[self updateItem:textField.tag withText:textField.text];
-	[textField resignFirstResponder];
-
-	return YES;
-}
-
 #pragma mark - UITextViewDelegate
 
 - (void)textViewDidEndEditing:(UITextView *)textView
 {
 	[self updateItem:textView.tag withText:textView.text];
 	[textView resignFirstResponder];
-//	[textView sizeToFit];
 }
 
 - (void)textViewDidChange:(UITextView *)textView
