@@ -35,7 +35,7 @@
 
 - (void)encodeWithCoder:(NSCoder *)encoder
 {
-	NSLog(@"encoding %@", self);
+//	NSLog(@"encoding %@", self);
 	
 	// PFObject basic properties
 	[encoder encodeObject:self.parseClassName forKey:@"objectClassName"];
@@ -55,7 +55,7 @@
 
 - (id)initWithCoder:(NSCoder *)decoder
 {
-	NSLog(@"decoding %@", decoder);
+//	NSLog(@"decoding %@", decoder);
 
 	NSString *objectId = [decoder decodeObjectForKey:@"objectId"];
 	NSString *className = [decoder decodeObjectForKey:@"objectClassName"];
