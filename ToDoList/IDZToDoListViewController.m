@@ -20,6 +20,7 @@
 @property (strong, nonatomic) NSMutableArray *todoItems;
 @property BOOL shouldEditNewItem;
 @property (strong, nonatomic) MBProgressHUD *hud;
+@property NSTimer *updateTimer;
 
 - (IBAction)onAddItem:(id)sender;
 
@@ -61,6 +62,7 @@
 - (void)motionEnded:(UIEventSubtype)motion withEvent:(UIEvent *)event
 {
     if (motion == UIEventSubtypeMotionShake) {
+		[self saveNow];
 		[PFUser logOut];
 		
 		// clear view so there are no artefacts
@@ -73,6 +75,8 @@
 
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
 {
+	[self saveNow];
+
 	for (IDZEditCell *cell in [self.tableView visibleCells]) {
 		[cell.todoText resignFirstResponder];
 	}
@@ -90,6 +94,7 @@
 
 - (void)onRefresh:(id)sender forState:(UIControlState)state
 {
+	[self saveNow];
     [self loadItems];
 }
 
@@ -252,13 +257,35 @@
 		item.priority = priority;
 	}
 	
-	[PFObject saveAllInBackground:self.todoItems];
+	[self saveItemsRemotely];
 	[self saveItemsLocally];
+}
+
+- (void)saveItemsRemotely
+{
+	// cancel any existing timer so we can create a new one
+	[self.updateTimer invalidate];
+
+	// create a timer to save all objects to Parse in X seconds
+	self.updateTimer = [NSTimer scheduledTimerWithTimeInterval:3.0 target:self selector:@selector(saveItemsToParse:) userInfo:nil repeats:NO];
+}
+
+- (void)saveNow
+{
+	[self.updateTimer fire];
+}
+
+// This should only be called through the use of NSTimer
+- (void)saveItemsToParse:(NSTimer *)timer
+{
+	NSLog(@"saving items to parse from a timer!");
+	[PFObject saveAllInBackground:self.todoItems];
 }
 
 - (void)saveItem:(IDZToDoItem *)item
 {
-	[item saveInBackground];
+//	[item saveInBackground];
+	[self saveItemsRemotely];
 	[self saveItemsLocally];
 }
 
