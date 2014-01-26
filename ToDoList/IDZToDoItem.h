@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <Parse/Parse.h>
 
-@interface IDZToDoItem : PFObject<PFSubclassing>
+@interface IDZToDoItem : PFObject <PFSubclassing, NSCoding>
 
 + (NSString *)parseClassName;
 + (IDZToDoItem *)itemWithText:(NSString *)text forUser:(PFUser *)user;

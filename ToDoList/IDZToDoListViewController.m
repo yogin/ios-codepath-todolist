@@ -58,6 +58,7 @@
 	}
 }
 
+// this is needed so we can handle the shake gesture
 - (BOOL)canBecomeFirstResponder {
     return YES;
 }
@@ -183,7 +184,7 @@
 												  options:NSStringDrawingUsesLineFragmentOrigin
 											   attributes:@{NSFontAttributeName:[UIFont systemFontOfSize:17]}
 												  context:nil];
-
+	
 	return textRect.size.height + 20;
 }
 
@@ -250,11 +251,23 @@
 	}
 	
 	[PFObject saveAllInBackground:self.todoItems];
+	[self saveItemsLocally];
 }
 
 - (void)saveItem:(IDZToDoItem *)item
 {
 	[item saveInBackground];
+	[self saveItemsLocally];
+}
+
+- (void)saveItemsLocally
+{
+	[NSKeyedArchiver archiveRootObject:[NSArray arrayWithArray:self.todoItems] toFile:@"todoItems"];
+}
+
+- (NSMutableArray *)loadItemsLocally
+{
+	return [[NSKeyedUnarchiver unarchiveObjectWithFile:@"todoItems"] mutableCopy];
 }
 
 - (void)removeItem:(NSInteger)at
@@ -278,7 +291,12 @@
 		}
 		else {
 			self.todoItems = [objects mutableCopy];
+			[self saveItemsLocally];
 			[self.tableView reloadData];
+		}
+
+		if ([self.todoItems count] == 0) {
+			self.todoItems = [self loadItemsLocally];
 		}
 
 		[self.refreshControl endRefreshing];
