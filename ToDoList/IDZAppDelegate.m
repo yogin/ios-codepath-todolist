@@ -23,8 +23,8 @@
 	[Parse setApplicationId:settings[@"Parse"][@"applicationId"]
 				  clientKey:settings[@"Parse"][@"clientKey"]];
 	[PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-	
-	[PFUser enableAutomaticUser];
+
+	// [PFUser enableAutomaticUser];
 	PFACL *defaultACL = [PFACL ACL];
 	// Optionally enable public read access while disabling public write access.
 	// [defaultACL setPublicReadAccess:YES];
