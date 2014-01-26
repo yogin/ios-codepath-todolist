@@ -278,7 +278,7 @@
 // This should only be called through the use of NSTimer
 - (void)saveItemsToParse:(NSTimer *)timer
 {
-	NSLog(@"saving items to parse from a timer!");
+//	NSLog(@"saving items to parse from a timer!");
 	[PFObject saveAllInBackground:self.todoItems];
 }
 
