@@ -38,11 +38,6 @@
     return self;
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-}
-
 - (void)viewDidAppear:(BOOL)animated
 {
 	[super viewDidAppear:animated];
@@ -73,6 +68,13 @@
 		[self.tableView reloadData];
 		
 		[self login];
+	}
+}
+
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+	for (IDZEditCell *cell in [self.tableView visibleCells]) {
+		[cell.todoText resignFirstResponder];
 	}
 }
 
